@@ -30,8 +30,7 @@ namespace AdysTech.CredentialManager
         internal Credential(NativeCode.NativeCredential ncred)
         {
             CredentialBlobSize = ncred.CredentialBlobSize;
-            CredentialBlob = Marshal.PtrToStringUni(ncred.CredentialBlob,
-             (int)ncred.CredentialBlobSize / 2);
+            CredentialBlob = CredentialBlobSize > 0 ? Marshal.PtrToStringUni(ncred.CredentialBlob, (int)ncred.CredentialBlobSize / 2) : string.Empty;
             UserName = Marshal.PtrToStringUni(ncred.UserName);
             TargetName = Marshal.PtrToStringUni(ncred.TargetName);
             TargetAlias = Marshal.PtrToStringUni(ncred.TargetAlias);
